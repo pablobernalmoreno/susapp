@@ -1,187 +1,59 @@
 "use client";
-import { useState, useEffect } from "react";
-import {
-  Box,
-  Typography,
-  Pagination,
-  Paper,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Alert,
-  PaginationItem,
-} from "@mui/material";
-
-const questions = [
-  {
-    id: 0,
-    question: "Question 1",
-    options: [
-      {
-        id: 0,
-        label: "A",
-        type: "correct",
-        reason: "Because it is A",
-      },
-      {
-        id: 1,
-        label: "B",
-        type: "incorrect",
-        reason: "Because it is not A",
-      },
-      {
-        id: 2,
-        label: "C",
-        type: "incorrect",
-        reason: "Because it is not A",
-      },
-      {
-        id: 3,
-        label: "D",
-        type: "incorrect",
-        reason: "Because it is not A",
-      },
-    ],
-  },
-  {
-    id: 1,
-    question: "Question 2",
-    options: [
-      {
-        id: 0,
-        label: "A",
-        type: "incorrect",
-        reason: "Because it is not B",
-      },
-      {
-        id: 1,
-        label: "B",
-        type: "correct",
-        reason: "Because it is B",
-      },
-      {
-        id: 2,
-        label: "C",
-        type: "incorrect",
-        reason: "Because it is not B",
-      },
-      {
-        id: 3,
-        label: "D",
-        type: "incorrect",
-        reason: "Because it is not B",
-      },
-    ],
-  },
-];
+import { Box, Button, Typography } from "@mui/material";
+import { AppBarMenu } from "./components/AppBarMenu";
 
 export default function Home() {
-  const [page, setPage] = useState(1);
-  const [selectedQuestion, setSelectedQuestion] = useState(questions[0]);
-  const [value, setValue] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
-  const [expanded, setExpanded] = useState(false);
-  const [canGoForward, setCanGoForward] = useState(false);
-
-  const handleOptionsChange = (event) => {
-    const selected = selectedQuestion?.options?.find(
-      (option) => option?.label === event?.target?.value
-    );
-    setValue(event?.target?.value);
-    setSelectedOption(selected);
-    setCanGoForward(selectedOption?.type === "incorrect");
-  };
-
-  const handlePaginationChange = (event, value) => {
-    setPage(value);
-    setSelectedQuestion(questions[value - 1]);
-    setValue("");
-    setSelectedOption("");
-  };
-
-  const handleAccordionExpand = () => {
-    setExpanded((expanded) => !expanded);
-  };
-
-  const getSeverity = (type) => {
-    switch (type) {
-      case "correct":
-        return "success";
-      case "incorrect":
-        return "error";
-      default:
-        return "";
-    }
-  };
-
   return (
-    <Box
-      sx={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Paper
+    <>
+      <AppBarMenu />
+      <Box
         sx={{
+          width: "100vw",
+          height: "100vh",
           display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
-          padding: "2rem",
         }}
       >
-        <Typography variant="h4" gutterBottom>
-          {selectedQuestion?.question}
-        </Typography>
-        <FormControl>
-          <RadioGroup value={value} onChange={handleOptionsChange}>
-            {selectedQuestion?.options?.map((option) => {
-              return (
-                <FormControlLabel
-                  key={option?.id}
-                  value={option?.label}
-                  control={<Radio />}
-                  label={option?.label}
-                />
-              );
-            })}
-          </RadioGroup>
-        </FormControl>
-        <Accordion expanded={expanded} onChange={handleAccordionExpand}>
-          <AccordionSummary>
-            <Typography component="span">Check Answer</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Alert severity={getSeverity(selectedOption?.type)}>
-              {selectedOption?.reason}
-            </Alert>
-          </AccordionDetails>
-        </Accordion>
-        <Pagination
-          count={questions?.length}
-          page={page}
-          onChange={handlePaginationChange}
-          //TODO WORK FOR ACTUAL TESTS
-          // renderItem={(item) => {
-          //   if (item?.type === "previous" || item.type === "page") {
-          //     return <PaginationItem {...item} disabled />;
-          //   }
-          //   if (item.type === "next") {
-          //     return <PaginationItem {...item} disabled={!canGoForward} />;
-          //   }
-
-          //   return <PaginationItem {...item} />;
-          // }}
-        />
-      </Paper>
-    </Box>
+        <main
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "50%",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              color: "#2E2E2E",
+              fontWeight: "bold",
+            }}
+          >
+            Ace your medical tests!
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              color: "#2E2E2E",
+            }}
+          >
+            Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
+            lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Button
+              variant="contained"
+              sx={{ background: "#464033", textTransform: "none" }}
+            >
+              Get Started
+            </Button>
+            <Button sx={{ color: "#2E2E2E", textTransform: "none" }}>
+              Learn more
+            </Button>
+          </Box>
+        </main>
+      </Box>
+    </>
   );
 }
