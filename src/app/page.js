@@ -14,6 +14,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Alert,
 } from "@mui/material";
 
 const questions = [
@@ -105,6 +106,17 @@ export default function Home() {
     setExpanded((expanded) => !expanded);
   };
 
+  const getSeverity = (type) => {
+    switch (type) {
+      case "correct":
+        return "success";
+      case "incorrect":
+        return "error";
+      default:
+        return "";
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -145,7 +157,9 @@ export default function Home() {
             <Typography component="span">Check Answer</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>{selectedOption?.reason}</Typography>
+            <Alert severity={getSeverity(selectedOption?.type)}>
+              {selectedOption?.reason}
+            </Alert>
           </AccordionDetails>
         </Accordion>
         <Pagination
