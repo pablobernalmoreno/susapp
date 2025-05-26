@@ -15,6 +15,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Alert,
+  PaginationItem,
 } from "@mui/material";
 
 const questions = [
@@ -86,6 +87,7 @@ export default function Home() {
   const [value, setValue] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [canGoForward, setCanGoForward] = useState(false);
 
   const handleOptionsChange = (event) => {
     const selected = selectedQuestion?.options?.find(
@@ -93,6 +95,7 @@ export default function Home() {
     );
     setValue(event?.target?.value);
     setSelectedOption(selected);
+    setCanGoForward(selectedOption?.type === "incorrect");
   };
 
   const handlePaginationChange = (event, value) => {
@@ -166,6 +169,17 @@ export default function Home() {
           count={questions?.length}
           page={page}
           onChange={handlePaginationChange}
+          //TODO WORK FOR ACTUAL TESTS
+          // renderItem={(item) => {
+          //   if (item?.type === "previous" || item.type === "page") {
+          //     return <PaginationItem {...item} disabled />;
+          //   }
+          //   if (item.type === "next") {
+          //     return <PaginationItem {...item} disabled={!canGoForward} />;
+          //   }
+
+          //   return <PaginationItem {...item} />;
+          // }}
         />
       </Paper>
     </Box>
