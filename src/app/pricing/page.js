@@ -55,7 +55,7 @@ const page = () => {
               variant="contained"
               sx={{ background: "#464033", textTransform: "none" }}
             >
-              Get Started
+              Go to Payment
             </Button>
           </Paper>
           <Paper
@@ -91,7 +91,7 @@ const page = () => {
               variant="contained"
               sx={{ background: "#464033", textTransform: "none" }}
             >
-              Get Started
+              Go to Payment
             </Button>
           </Paper>
         </section>
