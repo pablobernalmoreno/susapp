@@ -11,7 +11,7 @@ export const AppBarMenu = () => {
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box>
             <IconButton>
-              <LocalHospitalIcon />
+              <LocalHospitalIcon sx={{ color: "#2E2E2E" }} />
             </IconButton>
           </Box>
           <Box>
@@ -26,6 +26,7 @@ export const AppBarMenu = () => {
               About Us
             </Button>
             <Button
+              href="/pricing"
               sx={{
                 textTransform: "none",
                 color: "#2E2E2E",
@@ -44,6 +45,7 @@ export const AppBarMenu = () => {
                 fontWeight: "bold",
                 fontSize: "18px",
               }}
+              href="/login"
             >
               Log in <ArrowForwardIcon />
             </Button>

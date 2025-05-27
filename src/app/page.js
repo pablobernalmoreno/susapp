@@ -15,7 +15,7 @@ export default function Home() {
           alignItems: "center",
         }}
       >
-        <main
+        <section
           style={{
             display: "flex",
             flexDirection: "column",
@@ -52,7 +52,7 @@ export default function Home() {
               Learn more
             </Button>
           </Box>
-        </main>
+        </section>
       </Box>
     </>
   );
